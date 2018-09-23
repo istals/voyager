@@ -28,6 +28,30 @@ class User extends Authenticatable implements UserContract
         return $value;
     }
 
+    public function isAvatarDeletable() 
+    {
+        if(!is_null($this->attributes['avatar']) && !empty($this->attributes['avatar'])) {
+            return true;
+        }
+
+        return false;
+    }
+
+    public function getAvatar() 
+    {
+        $avatar = config('voyager.user.default_avatar', 'users/default.png');
+
+        if (!is_null($this->attributes['avatar']) && !empty($this->attributes['avatar'])) {
+            $avatar = $this->attributes['avatar'];
+        }
+
+        if (starts_with($avatar, 'http://') || starts_with($avatar, 'https://') || starts_with($avatar, '//')) {
+            return $avatar;
+        }
+
+        return Voyager::image($avatar);
+    }
+
     public function setCreatedAtAttribute($value)
     {
         $this->attributes['created_at'] = Carbon::parse($value)->format('Y-m-d H:i:s');
