@@ -106,7 +106,7 @@
                         <div class="panel-body">
                             <div class="form-group">
                                 @if($dataTypeContent->isAvatarDeletable($dataTypeContent->avatar))
-                                    <a href="{{ route('admin.users.remove_avatar', $dataTypeContent->id) }}" class="voyager-x" style="font-size:20px; float: right;" ></a>
+                                    <a href="{{ route('voyager.users.remove_avatar', $dataTypeContent->id) }}" class="voyager-x" style="font-size:20px; float: right;" ></a>
                                 @endif
                                 <img src="{{ $dataTypeContent->getAvatar($dataTypeContent->avatar) }}" style="width:200px; height:auto; clear:both; display:block; padding:2px; border:1px solid #ddd; margin-bottom:10px;" />
                                 <input type="file" data-name="avatar" name="avatar">
